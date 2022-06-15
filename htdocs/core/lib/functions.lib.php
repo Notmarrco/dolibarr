@@ -12445,7 +12445,7 @@ function show_actions_messaging($conf, $langs, $db, $filterobj, $objcon = '', $n
  *
  * @param string $prefix Prefix used to build the date selector (for instance using Form::selectDate)
  * @param string $hourTime  'getpost' to include hour, minute, second values from the HTTP request, 'XX:YY:ZZ' to set
- *                             hour, minute, second respectively (for instance '23:59:59')
+ *                          hour, minute, second respectively (for instance '23:59:59')
  * @param string $gm Passed to dol_mktime
  * @return int|string  Date as a timestamp, '' or false if error
  */
@@ -12456,9 +12456,9 @@ function GETPOSTDATE($prefix, $hourTime = '', $gm = 'auto')
 		$minute = GETPOSTINT($prefix . 'minute');
 		$second = GETPOSTINT($prefix . 'second');
 	} elseif (preg_match('/^(\d\d):(\d\d):(\d\d)$/', $hourTime, $m)) {
-		$hour   = (int)$m[1];
-		$minute = (int)$m[2];
-		$second = (int)$m[3];
+		$hour   = intval($m[1]);
+		$minute = intval($m[2]);
+		$second = intval($m[3]);
 	} else {
 		$hour = $minute = $second = 0;
 	}
