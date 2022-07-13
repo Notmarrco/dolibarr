@@ -898,6 +898,7 @@ $i = 0;
 //$savnbfield = $totalarray['nbfield'];
 //$totalarray['nbfield'] = 0;
 $imaxinloop = ($limit ? min($num, $limit) : $num);
+$today_start_date_time = dol_now();
 while ($i < $imaxinloop) {
 	$obj = $db->fetch_object($resql);
 	if (empty($obj)) {
