@@ -899,6 +899,7 @@ $i = 0;
 //$totalarray['nbfield'] = 0;
 $imaxinloop = ($limit ? min($num, $limit) : $num);
 $today_start_date_time = dol_now();
+$cache_user_list = array();
 while ($i < $imaxinloop) {
 	$obj = $db->fetch_object($resql);
 	if (empty($obj)) {
@@ -956,10 +957,15 @@ while ($i < $imaxinloop) {
 
 	// User owner
 	if (!empty($arrayfields['owner']['checked'])) {
-		print '<td class="tdoverflowmax150">'; // With edge and chrome the td overflow is not supported correctly when content is not full text.
-		if ($obj->fk_user_action > 0) {
-			$userstatic->fetch($obj->fk_user_action);
-			print $userstatic->getNomUrl(-1);
+		print '<td class="tdoverflowmax150"' . ($event_owner_style != '' ? ' style="'.$event_owner_style.'"' : '') . '>'; // With edge and chrome the td overflow is not supported correctly when content is not full text.
+		if ($obj->fk_user_action > 0 && !isset($cache_user_list[$obj->fk_user_action])) {
+			$res = $userstatic->fetch($obj->fk_user_action);
+			if ($res > 0) {
+				$cache_user_list[$obj->fk_user_action] = $userstatic;
+			}
+		}
+		if (isset($cache_user_list[$obj->fk_user_action])) {
+			print $cache_user_list[$obj->fk_user_action]->getNomUrl(-1);
 		} else {
 			print '&nbsp;';
 		}
@@ -1007,7 +1013,7 @@ while ($i < $imaxinloop) {
 
 	// Start date
 	if (!empty($arrayfields['a.datep']['checked'])) {
-		print '<td class="center nowraponall">';
+		print '<td class="center nowraponall"' . ($event_start_date_style != '' ? ' style="'.$event_start_date_style.'"' : '') . '>';
 		if (empty($obj->fulldayevent)) {
 			print dol_print_date($db->jdate($obj->dp), $formatToUse, 'tzuserrel');
 		} else {
