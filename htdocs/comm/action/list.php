@@ -886,6 +886,7 @@ print "</tr>\n";
 
 $now = dol_now();
 $delay_warning = $conf->global->MAIN_DELAY_ACTIONS_TODO * 24 * 60 * 60;
+$today_start_time = dol_mktime(0, 0, 0, date('m', $now), date('d', $now), date('Y', $now));
 
 require_once DOL_DOCUMENT_ROOT.'/comm/action/class/cactioncomm.class.php';
 $caction = new CActionComm($db);
