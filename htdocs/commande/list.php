@@ -1418,8 +1418,9 @@ if ($resql) {
 	}
 	
 	// Détail commande
-	print '<div class="nowrap inline-block minheight30"><input type="checkbox" id="check_orderdetail" name="check_orderdetail" class="check_orderdetail"'.($check_orderdetail ? ' checked' : '').'><label for="check_orderdetail"> <span class="check_orderdetail_text">'.$langs->trans("OrderShowDetail").'</span></label> &nbsp; </div>';
-
+	if (!empty($conf->global->ORDER_ADD_OPTION_SHOW_DETAIL_LIST)){
+		print '<div class="nowrap inline-block minheight30"><input type="checkbox" id="check_orderdetail" name="check_orderdetail" class="check_orderdetail"'.($check_orderdetail ? ' checked' : '').'><label for="check_orderdetail"> <span class="check_orderdetail_text">'.$langs->trans("OrderShowDetail").'</span></label> &nbsp; </div>';
+	}
 
 	if ($sall) {
 		foreach ($fieldstosearchall as $key => $val) {
