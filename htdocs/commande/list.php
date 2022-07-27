@@ -258,6 +258,8 @@ if (empty($reshook)) {
 		$search_user = '';
 		$search_sale = '';
 		$search_product_category = '';
+		$search_refProduct = '';
+		$search_descProduct = '';
 		$search_ref = '';
 		$search_ref_customer = '';
 		$search_company = '';
