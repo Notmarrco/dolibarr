@@ -11,7 +11,7 @@
  * Copyright (C) 2015       Jean-François Ferry     <jfefe@aternatik.fr>
  * Copyright (C) 2016-2023  Ferran Marcet           <fmarcet@2byte.es>
  * Copyright (C) 2018       Charlene Benke	        <charlie@patas-monkey.com>
- * Copyright (C) 2021		Anthony Berton			<anthony.berton@bb2a.fr>
+ * Copyright (C) 2021	   	Anthony Berton			<anthony.berton@bb2a.fr>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,9 +77,6 @@ $search_datedelivery_start = dol_mktime(0, 0, 0, GETPOST('search_datedelivery_st
 $search_datedelivery_end = dol_mktime(23, 59, 59, GETPOST('search_datedelivery_end_month', 'int'), GETPOST('search_datedelivery_end_day', 'int'), GETPOST('search_datedelivery_end_year', 'int'));
 
 $search_product_category = GETPOST('search_product_category', 'int');
-
-
-
 $search_ref = GETPOST('search_ref', 'alpha') != '' ?GETPOST('search_ref', 'alpha') : GETPOST('sref', 'alpha');
 $search_ref_customer = GETPOST('search_ref_customer', 'alpha');
 $search_company = GETPOST('search_company', 'alpha');
@@ -255,8 +252,6 @@ if (empty($reshook)) {
 		$search_user = '';
 		$search_sale = '';
 		$search_product_category = '';
-		$search_refProduct = '';
-		$search_descProduct = '';
 		$search_ref = '';
 		$search_ref_customer = '';
 		$search_company = '';
@@ -822,9 +817,6 @@ $sql .= ' p.rowid as project_id, p.ref as project_ref, p.title as project_label,
 $sql .= ' u.login, u.lastname, u.firstname, u.email as user_email, u.statut as user_statut, u.entity, u.photo, u.office_phone, u.office_fax, u.user_mobile, u.job, u.gender,';
 $sql .= ' c.fk_cond_reglement,c.deposit_percent,c.fk_mode_reglement,c.fk_shipping_method,';
 $sql .= ' c.fk_input_reason, c.import_key';
-
-
-
 if (($search_categ_cus > 0) || ($search_categ_cus == -2)) {
 	$sql .= ", cc.fk_categorie, cc.fk_soc";
 }
@@ -851,11 +843,7 @@ $sql .= " LEFT JOIN ".MAIN_DB_PREFIX."c_departements as state on (state.rowid = 
 if (($search_categ_cus > 0) || ($search_categ_cus == -2)) {
 	$sql .= ' LEFT JOIN '.MAIN_DB_PREFIX."categorie_societe as cc ON s.rowid = cc.fk_soc"; // We'll need this table joined to the select in order to filter by categ
 }
-
-
 $sql .= ', '.MAIN_DB_PREFIX.'commande as c';
-
-
 if (!empty($extrafields->attributes[$object->table_element]['label']) && is_array($extrafields->attributes[$object->table_element]['label']) && count($extrafields->attributes[$object->table_element]['label'])) {
 	$sql .= " LEFT JOIN ".MAIN_DB_PREFIX."commande_extrafields as ef on (c.rowid = ef.fk_object)";
 }
@@ -886,13 +874,6 @@ if ($socid > 0) {
 }
 if (empty($user->rights->societe->client->voir) && !$socid) {
 	$sql .= " AND s.rowid = sc.fk_soc AND sc.fk_user = ".((int) $user->id);
-}
-if ($search_refProduct) {
-	$sql .= natural_search('pr.ref', $search_refProduct);
-}
-if ($search_descProduct) {
-	$sql .= natural_search('pr.label', $search_descProduct);
-	$sql .= natural_search('cdet.description', $search_descProduct);
 }
 if ($search_ref) {
 	$sql .= natural_search('c.ref', $search_ref);
@@ -1413,8 +1394,6 @@ if ($resql) {
 		print '</div>';
 		print '<br><br>';
 	}
-
-
 
 	if ($sall) {
 		foreach ($fieldstosearchall as $key => $val) {
