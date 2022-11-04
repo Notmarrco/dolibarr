@@ -1704,8 +1704,7 @@ if ($action == 'create') {
 					$("input[name=action]").val("create");
 					$("form[name=add]").submit();
 				});
-			});
-			</script>';
+				</script>';
 		}
 		print ' <a href="'.DOL_URL_ROOT.'/societe/card.php?action=create&client=0&fournisseur=1&backtopage='.urlencode($_SERVER["PHP_SELF"].'?action=create').'"><span class="fa fa-plus-circle valignmiddle paddingleft" title="'.$langs->trans("AddThirdParty").'"></span></a>';
 	}
