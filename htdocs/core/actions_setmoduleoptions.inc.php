@@ -144,7 +144,10 @@ if ($action == 'setModuleOptions' && !empty($user->admin)) {
 				break;	// So we take the first directory found into setup $conf->global->$keyforuploaddir
 			}
 		}
+
+
 		if ($upload_dir) {
+
 			$result = dol_add_file_process($upload_dir, 1, 1, 'uploadfile', '');
 			if ($result <= 0) {
 				$error++;
