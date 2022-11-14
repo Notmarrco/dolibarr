@@ -147,7 +147,6 @@ if ($action == 'setModuleOptions' && !empty($user->admin)) {
 
 
 		if ($upload_dir) {
-
 			$result = dol_add_file_process($upload_dir, 1, 1, 'uploadfile', '');
 			if ($result <= 0) {
 				$error++;
