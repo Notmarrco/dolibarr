@@ -923,8 +923,8 @@ class modFournisseur extends DolibarrModules
 		}
 
 		$sql_invoice = array(
-			"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = '".$this->db->escape($this->const[2][2])."' AND type = 'invoice_supplier' AND entity = ".$conf->entity,
-			"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('".$this->db->escape($this->const[2][2])."','invoice_supplier',".$conf->entity.")",
+			"DELETE FROM ".MAIN_DB_PREFIX."document_model WHERE nom = '".$this->db->escape($this->const[2][2])."' AND type = 'invoice_supplier' AND entity = ".((int) $conf->entity),
+			"INSERT INTO ".MAIN_DB_PREFIX."document_model (nom, type, entity) VALUES('".$this->db->escape($this->const[2][2])."', 'invoice_supplier', ".((int) $conf->entity).")",
 		);
 
 		$sql = array_merge($sql_order, $sql_invoice);
