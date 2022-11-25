@@ -928,8 +928,8 @@ class modFournisseur extends DolibarrModules
 
 		$sql = array_merge($sql_order, $sql_invoice);
 		*/
-		//var_dump($sql);
-		//die;
+		
+		$sql = $sql_order;
 
 		return $this->_init($sql, $options);
 	}
