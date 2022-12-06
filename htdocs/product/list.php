@@ -99,6 +99,8 @@ $search_accountancy_code_buy_export = GETPOST("search_accountancy_code_buy_expor
 $search_finished = GETPOST("search_finished", 'int');
 $optioncss = GETPOST('optioncss', 'alpha');
 $type = GETPOST("type", "int");
+$mode = GETPOST('mode', 'alpha');
+
 
 //Show/hide child products
 if (isModEnabled('variants') && !empty($conf->global->PRODUIT_ATTRIBUTES_HIDECHILD)) {
