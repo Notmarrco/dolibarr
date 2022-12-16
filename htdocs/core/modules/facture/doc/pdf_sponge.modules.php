@@ -1335,16 +1335,6 @@ class pdf_sponge extends ModelePDFFactures
 				$posy = $pdf->GetY();
 			}
 
-			// Show category of operations
-			if ($conf->global->INVOICE_CATEGORY_OF_OPERATION == 2) {
-				$nbCategoryOfOperations = 0;
-				$categoryOfOperations = $outputlangs->trans("MentionCategoryOfOperations") . ': ' . $outputlangs->trans("MentionCategoryOfOperations" . $nbCategoryOfOperations);
-				$pdf->SetXY($this->marge_gauche, $posy);
-				$pdf->writeHTMLCell(80, 5, '', '', $outputlangs->transnoentities($categoryOfOperations), 0, 1);
-
-				$posy = $pdf->GetY() + 1;
-			}
-
 			// Show if Option VAT debit option is on also if transmitter is french
 			// Decret n°2099-1299 2022-10-07
 			// French mention : "Option pour le paiement de la taxe d'après les débits"
@@ -2003,10 +1993,9 @@ class pdf_sponge extends ModelePDFFactures
 	 *   @param		int			$hidebottom		Hide bottom bar of array
 	 *   @param		string		$currency		Currency code
 	 *   @param		Translate	$outputlangsbis	Langs object bis
-	 *   @param		Facture		$object     	Object to show
 	 *   @return	void
 	 */
-	protected function _tableau(&$pdf, $tab_top, $tab_height, $nexY, $outputlangs, $hidetop = 0, $hidebottom = 0, $currency = '', $outputlangsbis = null, $object)
+	protected function _tableau(&$pdf, $tab_top, $tab_height, $nexY, $outputlangs, $hidetop = 0, $hidebottom = 0, $currency = '', $outputlangsbis = null)
 	{
 		global $conf;
 
