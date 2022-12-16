@@ -215,7 +215,7 @@ if (!defined('NOREQUIREDB') && !defined('NOREQUIRESOC')) {
 		$conf->global->MAIN_INVERT_SENDER_RECIPIENT = 1;
 	}
 	if ($mysoc->country_code == 'FR' && !isset($conf->global->MAIN_PROFID1_IN_ADDRESS)) {
-		// For FR, default value of option to show profid SIRET is on by default
+		// For FR, default value of option to show profid SIRET is on by default. Decret n°2099-1299 2022-10-07
 		$conf->global->MAIN_PROFID1_IN_ADDRESS = 1;
 	}
 
