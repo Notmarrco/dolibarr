@@ -68,9 +68,7 @@ $dirmodels = array_merge(array('/'), (array) $conf->modules_parts['models']);
  * Actions
  */
 
-if ((float) DOL_VERSION >= 6) {
-	include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
-}
+include DOL_DOCUMENT_ROOT.'/core/actions_setmoduleoptions.inc.php';
 
 if ($action == 'updateMask') {
 	$maskconstorder = GETPOST('maskconstorder', 'aZ09');
@@ -206,7 +204,7 @@ foreach ($myTmpObjects as $myTmpObjectKey => $myTmpObjectArray) {
 	}
 	if ($myTmpObjectArray['includerefgeneration']) {
 		/*
-		 * Orders Numbering model
+		 * Assets Numbering model
 		 */
 		$setupnotempty++;
 
