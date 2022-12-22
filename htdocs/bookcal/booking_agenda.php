@@ -27,8 +27,8 @@ require '../main.inc.php';
 require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/company.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-dol_include_once('/bookcal/class/booking.class.php');
-dol_include_once('/bookcal/lib/bookcal_booking.lib.php');
+require_once DOL_DOCUMENT_ROOT.'/bookcal/class/booking.class.php';
+require_once DOL_DOCUMENT_ROOT.'/bookcal/lib/bookcal_booking.lib.php';
 
 
 // Load translation files required by the page
