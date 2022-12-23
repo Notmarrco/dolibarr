@@ -209,7 +209,7 @@ class AgendaEvents extends DolibarrApi
 		if (!DolibarrApiAccess::$user->rights->agenda->myactions->create) {
 			throw new RestException(401, "Insufficient rights to create your Agenda Event");
 		}
-		if (!DolibarrApiAccess::$user->rights->agenda->allactions->create && DolibarrApiAccess::$user->id != $request_data['userownerid']) {
+		if (!DolibarrApiAccess::$user->hasRight('agenda', 'allactions', 'create') && DolibarrApiAccess::$user->id != $request_data['userownerid']) {
 			throw new RestException(401, "Insufficient rights to create an Agenda Event for owner id ".$request_data['userownerid'].' Your id is '.DolibarrApiAccess::$user->id);
 		}
 
@@ -248,7 +248,7 @@ class AgendaEvents extends DolibarrApi
 		if (!DolibarrApiAccess::$user->rights->agenda->myactions->create) {
 			throw new RestException(401, "Insufficient rights to create your Agenda Event");
 		}
-		if (!DolibarrApiAccess::$user->rights->agenda->allactions->create && DolibarrApiAccess::$user->id != $request_data['userownerid']) {
+		if (!DolibarrApiAccess::$user->hasRight('agenda', 'allactions', 'create') && DolibarrApiAccess::$user->id != $request_data['userownerid']) {
 			throw new RestException(401, "Insufficient rights to create an Agenda Event for owner id ".$request_data['userownerid'].' Your id is '.DolibarrApiAccess::$user->id);
 		}
 
