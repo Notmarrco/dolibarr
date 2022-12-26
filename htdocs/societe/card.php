@@ -93,8 +93,12 @@ $cancel		= GETPOST('cancel', 'alpha');
 $backtopage = GETPOST('backtopage', 'alpha');
 $backtopageforcancel = GETPOST('backtopageforcancel', 'alpha');
 $backtopagejsfields = GETPOST('backtopagejsfields', 'alpha');
-$dol_openinpopup = GETPOST('dol_openinpopup', 'aZ09');
 $confirm 	= GETPOST('confirm', 'alpha');
+
+if (!empty($backtopagejsfields)) {
+	$tmpbacktopagejsfields = explode(':', $backtopagejsfields);
+	$dol_openinpopup = $tmpbacktopagejsfields[0];
+}
 
 $socid = GETPOST('socid', 'int') ?GETPOST('socid', 'int') : GETPOST('id', 'int');
 if ($user->socid) {
@@ -712,9 +716,6 @@ if (empty($reshook)) {
 
 					if ($backtopagejsfields) {
 						llxHeader('', '', '');
-
-						$tmpbacktopagejsfields = explode(':', $backtopagejsfields);
-						$dol_openinpopup = $tmpbacktopagejsfields[0];
 
 						$retstring = '<script>';
 						$retstring .= 'jQuery(document).ready(function() {
