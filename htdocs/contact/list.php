@@ -1210,10 +1210,8 @@ while ($i < min($num, $limit)) {
 			print '<div class="box-flex-container">';
 		}
 		$contactstatic->photo = $obj->photo;
-			$soc = new Societe($db);
-			$soc->fetch($obj->socid);
-		if ($obj->socid) {
-			$contactstatic->socid = $soc->getNomUrl(1);
+		if ($obj->socid > 0) {
+			$contactstatic->fetch_thirdparty($obj->socid);
 		}
 		print $contactstatic->getKanbanView('');
 		if ($i == min($num, $limit) - 1) {
