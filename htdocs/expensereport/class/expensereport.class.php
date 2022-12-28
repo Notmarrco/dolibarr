@@ -1570,7 +1570,7 @@ class ExpenseReport extends CommonObject
 			$sql = 'UPDATE '.MAIN_DB_PREFIX.$this->table_element;
 			$sql .= " SET fk_statut = ".self::STATUS_CANCELED.", fk_user_cancel = ".((int) $fuser->id);
 			$sql .= ", date_cancel='".$this->db->idate($this->date_cancel)."'";
-			$sql .= " ,detail_cancel='".$this->db->escape($detail)."'";
+			$sql .= ", detail_cancel='".$this->db->escape($detail)."'";
 			$sql .= " WHERE rowid = ".((int) $this->id);
 
 			dol_syslog(get_class($this)."::set_cancel", LOG_DEBUG);
@@ -1602,6 +1602,7 @@ class ExpenseReport extends CommonObject
 		} else {
 			dol_syslog(get_class($this)."::set_cancel expensereport already with cancel status", LOG_WARNING);
 		}
+		return 0;
 	}
 
 	/**
@@ -2196,6 +2197,8 @@ class ExpenseReport extends CommonObject
 				return -2;
 			}
 		}
+
+		return 0;
 	}
 
 	/**
@@ -2850,8 +2853,11 @@ class ExpenseReportLine extends CommonObjectLine
 			$this->rule_warning_message = $objp->rule_warning_message;
 
 			$this->db->free($result);
+
+			return $this->id;
 		} else {
 			dol_print_error($this->db);
+			return -1;
 		}
 	}
 
