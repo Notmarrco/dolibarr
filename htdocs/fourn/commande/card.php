@@ -124,12 +124,7 @@ if ($id > 0 || !empty($ref)) {
 		dol_print_error($db, $object->error);
 	}
 } elseif (!empty($socid) && $socid > 0) {
-	$fourn = new Fournisseur($db);
-	$ret = $fourn->fetch($socid);
-	if ($ret < 0) {
-		dol_print_error($db, $object->error);
-	}
-	$object->socid = $fourn->id;
+	$object->socid = $socid;
 	$ret = $object->fetch_thirdparty();
 	if ($ret < 0) {
 		dol_print_error($db, $object->error);
@@ -1874,18 +1869,12 @@ if ($action == 'create') {
 	print "</form>\n";
 } elseif (!empty($object->id)) {
 	$result = $object->fetch($id, $ref);
+	$object->fetch_thirdparty();
 
-	$societe = new Fournisseur($db);
-	$result = $societe->fetch($object->socid);
-	if ($result < 0) {
-		dol_print_error($db);
-	}
+	$societe = $object->thirdparty;
 
 	$author = new User($db);
 	$author->fetch($object->user_author_id);
-
-	$res = $object->fetch_optionals();
-
 
 	$head = ordersupplier_prepare_head($object);
 
