@@ -88,7 +88,7 @@ if ($action == 'setnote' && $user->hasRight('facture', 'paiement')) {
 	}
 }
 
-if ($action == 'confirm_delete' && $confirm == 'yes' && $user->rights->facture->paiement) {
+if ($action == 'confirm_delete' && $confirm == 'yes' && $user->hasRight('facture', 'paiement')) {
 	$db->begin();
 
 	$result = $object->delete();
@@ -109,7 +109,7 @@ if ($action == 'confirm_delete' && $confirm == 'yes' && $user->rights->facture->
 	}
 }
 
-if ($action == 'confirm_validate' && $confirm == 'yes' && $user->rights->facture->paiement) {
+if ($action == 'confirm_validate' && $confirm == 'yes' && $user->hasRight('facture', 'paiement')) {
 	$db->begin();
 
 	if ($object->validate($user) > 0) {
@@ -179,7 +179,7 @@ if ($action == 'confirm_validate' && $confirm == 'yes' && $user->rights->facture
 	}
 }
 
-if ($action == 'setnum_paiement' && GETPOST('num_paiement')) {
+if ($action == 'setnum_paiement' && GETPOST('num_paiement') && $user->hasRight('facture', 'paiement')) {
 	$res = $object->update_num(GETPOST('num_paiement'));
 	if ($res === 0) {
 		setEventMessages($langs->trans('PaymentNumberUpdateSucceeded'), null, 'mesgs');
@@ -188,7 +188,7 @@ if ($action == 'setnum_paiement' && GETPOST('num_paiement')) {
 	}
 }
 
-if ($action == 'setdatep' && GETPOST('datepday')) {
+if ($action == 'setdatep' && GETPOST('datepday') && $user->hasRight('facture', 'paiement')) {
 	$datepaye = dol_mktime(GETPOST('datephour', 'int'), GETPOST('datepmin', 'int'), GETPOST('datepsec', 'int'), GETPOST('datepmonth', 'int'), GETPOST('datepday', 'int'), GETPOST('datepyear', 'int'));
 	$res = $object->update_date($datepaye);
 	if ($res === 0) {
@@ -197,7 +197,8 @@ if ($action == 'setdatep' && GETPOST('datepday')) {
 		setEventMessages($langs->trans('PaymentDateUpdateFailed'), null, 'errors');
 	}
 }
-if ($action == 'createbankpayment' && !empty($user->rights->facture->paiement)) {
+
+if ($action == 'createbankpayment' && $user->hasRight('facture', 'paiement')) {
 	$db->begin();
 
 	// Create the record into bank for the amount of payment $object
