@@ -2596,7 +2596,7 @@ class pdf_sponge extends ModelePDFFactures
 			),
 			'border-left' => true, // add left line separator
 		);
-		if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+		if (getDolGlobalInt('PRODUCT_USE_UNITS')) {
 			$this->cols['unit']['status'] = true;
 		}
 
