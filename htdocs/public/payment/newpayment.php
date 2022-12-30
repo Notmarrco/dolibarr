@@ -2413,7 +2413,7 @@ if (preg_match('/^dopayment/', $action)) {			// If we choosed/click on the payme
 				color: '#fa755a',
 				iconColor: '#fa755a'
 			  }
-			};
+			}
 
 			var cardElement = elements.create('card', {style: style});
 
@@ -2453,7 +2453,7 @@ if (preg_match('/^dopayment/', $action)) {			// If we choosed/click on the payme
 					?>
 			var cardButton = document.getElementById('buttontopay');
 			var clientSecret = cardButton.dataset.secret;
-			var options = { clientSecret: clientSecret,};
+			var options = { clientSecret: clientSecret };
 
 			// Create an instance of Elements
 			var elements = stripe.elements(options);
@@ -2483,7 +2483,7 @@ if (preg_match('/^dopayment/', $action)) {			// If we choosed/click on the payme
 				color: '#fa755a',
 				iconColor: '#fa755a'
 			  }
-			};
+			}
 
 				<?php
 				if (getDolGlobalInt('STRIPE_USE_INTENT_WITH_AUTOMATIC_CONFIRMATION') == 2) {

@@ -549,7 +549,7 @@ if (!empty($conf->global->MEMBER_SKIP_TABLE) || !empty($conf->global->MEMBER_NEW
 				if (jQuery("#morphy").val() == \'mor\') {
 					jQuery("#trcompany").show();
 				}
-			};
+			}
 			initmorphy();
 			jQuery("#morphy").change(function() {
 				initmorphy();

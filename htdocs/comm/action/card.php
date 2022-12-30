@@ -1599,7 +1599,7 @@ if ($action == 'create') {
 	            		        $("#select_actioncommsendmodel_mail").closest("tr").show();
 	            		    } else {
 	            			    $("#select_actioncommsendmodel_mail").closest("tr").hide();
-	            		    };
+	            		    }
 	            		});
                    })';
 		print '</script>'."\n";
@@ -2101,7 +2101,7 @@ if ($id > 0) {
 	            		        $("#select_actioncommsendmodel_mail").closest("tr").show();
 	            		    } else {
 	            			    $("#select_actioncommsendmodel_mail").closest("tr").hide();
-	            		    };
+	            		    }
 	            		});
 
                    })';

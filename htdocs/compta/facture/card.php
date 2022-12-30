@@ -3360,7 +3360,7 @@ if ($action == 'create') {
 						jQuery(".checkforselect").prop("disabled", false);
 						jQuery(".checkforselect").prop("checked", true);
 					}
-				};
+				}
     		});
     		</script>';
 
@@ -3774,7 +3774,7 @@ if ($action == 'create') {
 			if ($soc->fetch_optionals() > 0) {
 				$object->array_options = array_merge($object->array_options, $soc->array_options);
 			}
-		};
+		}
 
 		print $object->showOptionals($extrafields, 'create', $parameters);
 	}

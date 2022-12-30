@@ -692,7 +692,7 @@ abstract class CommonDocGenerator
 						$resql = $this->db->fetch_object($resql);
 
 						foreach ($extralabels as $key => $label) {
-							$resarray['line_product_supplier_'.$key] = $resql->{$key};
+							$resarray['line_product_supplier_'.$key] = $resql->$key;
 						}
 					}
 				}
