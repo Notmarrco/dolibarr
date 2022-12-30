@@ -1520,7 +1520,7 @@ if ($action == 'create') {
 				//	print '<td width="80" class="right">'.$langs->trans("PriceUHTCurrency").'</td>';
 				//}
 				print '<td width="30" class="center">'.$langs->trans("Qty").'</td>';
-				if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+				if (getDolGlobalInt('PRODUCT_USE_UNITS')) {
 					print '<td width="30" class="left">'.$langs->trans("Unit").'</td>';
 				}
 				print '<td width="50" class="right">'.$langs->trans("ReductionShort").'</td>';
@@ -1601,7 +1601,7 @@ if ($action == 'create') {
 					// Quantity
 					print '<td class="center">'.$objp->qty.'</td>';
 					// Unit
-					if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+					if (getDolGlobalInt('PRODUCT_USE_UNITS')) {
 						print '<td class="left">'.$langs->trans($object->lines[$cursorline - 1]->getLabelOfUnit()).'</td>';
 					}
 					// Discount
@@ -1746,7 +1746,7 @@ if ($action == 'create') {
 					print '<td class="center"><input size="2" type="text" name="elqty" value="'.$objp->qty.'"></td>';
 
 					// Unit
-					if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+					if (getDolGlobalInt('PRODUCT_USE_UNITS')) {
 						print '<td class="left">';
 						print $form->selectUnits($objp->fk_unit, "unit");
 						print '</td>';
@@ -1772,7 +1772,7 @@ if ($action == 'create') {
 					if (isModEnabled('margin') && !empty($conf->global->MARGIN_SHOW_ON_CONTRACT)) {
 						$colspan++;
 					}
-					if (!empty($conf->global->PRODUCT_USE_UNITS)) {
+					if (getDolGlobalInt('PRODUCT_USE_UNITS')) {
 						$colspan++;
 					}
 
