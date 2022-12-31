@@ -281,6 +281,7 @@ if ((empty($paymentmethod) || $paymentmethod == 'stripe') && isModEnabled('strip
 }
 
 // Initialize $validpaymentmethod
+// The list can be complete by the hook 'doValidatePayment' executed inside getValidOnlinePaymentMethods()
 $validpaymentmethod = getValidOnlinePaymentMethods($paymentmethod);
 
 // This hook is used to push to $validpaymentmethod by external payment modules (ie Payzen, ...)
