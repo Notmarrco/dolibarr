@@ -1109,7 +1109,7 @@ SEARCHENGINE = YES
 # full text search. The disadvances is that it is more difficult to setup
 # and does not have live searching capabilities.
 
-SERVER_BASED_SEARCH = YES
+SERVER_BASED_SEARCH = NO
 
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
