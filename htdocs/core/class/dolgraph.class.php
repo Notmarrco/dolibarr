@@ -1178,7 +1178,7 @@ class DolGraph
 			} else {
 				$this->stringtoshow .= 'legend: { labels: { boxWidth: 15 }, position: \'' . ($showlegend == 2 ? 'right' : 'top') . '\'';
 				if (!empty($legendMaxLines)) {
-					$this->stringtoshow .= ', maxLines: ' . $legendMaxLines . '';
+					$this->stringtoshow .= ', maxLines: ' . $legendMaxLines;
 				}
 				$this->stringtoshow .= ' }, ' . "\n";
 			}
@@ -1190,7 +1190,7 @@ class DolGraph
 			} else {
 				$this->stringtoshow .= 'legend: { labels: { boxWidth: 15 }, position: \'' . ($showlegend == 2 ? 'right' : 'top') . '\'';
 				if (!empty($legendMaxLines)) {
-					$this->stringtoshow .= ', maxLines: ' . $legendMaxLines . '';
+					$this->stringtoshow .= ', maxLines: ' . $legendMaxLines;
 				}
 				$this->stringtoshow .= ' }, ' . "\n";
 			}
