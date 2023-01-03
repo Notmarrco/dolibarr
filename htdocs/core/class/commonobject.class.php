@@ -3352,6 +3352,8 @@ abstract class CommonObject
 			$row = $this->db->fetch_row($resql);
 			return $row[0];
 		}
+
+		return 0;
 	}
 
 	/**
@@ -3375,6 +3377,8 @@ abstract class CommonObject
 			$row = $this->db->fetch_row($resql);
 			return $row[0];
 		}
+
+		return 0;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -3420,6 +3424,8 @@ abstract class CommonObject
 				return $row[0];
 			}
 		}
+
+		return 0;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps

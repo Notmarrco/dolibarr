@@ -454,6 +454,8 @@ class Propal extends CommonObject
 
 			$this->lines[] = $line;
 		}
+
+		return 1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -2112,6 +2114,8 @@ class Propal extends CommonObject
 				return -1 * $error;
 			}
 		}
+
+		return -1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -2168,6 +2172,8 @@ class Propal extends CommonObject
 				return -1 * $error;
 			}
 		}
+
+		return -1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -2239,6 +2245,8 @@ class Propal extends CommonObject
 				return -1 * $error;
 			}
 		}
+
+		return -1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -2421,9 +2429,9 @@ class Propal extends CommonObject
 				$this->db->rollback();
 				return -1 * $error;
 			}
-		} else {
-			return -1;
 		}
+
+		return -1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -2484,6 +2492,8 @@ class Propal extends CommonObject
 				return -1 * $error;
 			}
 		}
+
+		return -1;
 	}
 
 
@@ -2546,6 +2556,8 @@ class Propal extends CommonObject
 				return -1 * $error;
 			}
 		}
+
+		return -1;
 	}
 
 
