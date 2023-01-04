@@ -977,7 +977,7 @@ class Ldap
 	 *
 	 * 	@param	string	$filterrecord		Record
 	 * 	@param	string	$attribute			Attributes
-	 * 	@return void
+	 * 	@return array|boolean
 	 */
 	public function getAttributeValues($filterrecord, $attribute)
 	{
@@ -1020,7 +1020,7 @@ class Ldap
 	 *	@param	array	$attributeArray 	Array of fields required. Note this array must also contains field $useridentifier (Ex: sn,userPassword)
 	 *	@param	int		$activefilter		'1' or 'user'=use field this->filter as filter instead of parameter $search, 'group'=use field this->filtergroup as filter, 'member'=use field this->filtermember as filter
 	 *	@param	array	$attributeAsArray 	Array of fields wanted as an array not a string
-	 *	@return	array						Array of [id_record][ldap_field]=value
+	 *	@return	array|int					Array of [id_record][ldap_field]=value
 	 */
 	public function getRecords($search, $userDn, $useridentifier, $attributeArray, $activefilter = 0, $attributeAsArray = array())
 	{
@@ -1337,7 +1337,7 @@ class Ldap
 	 * 	UserAccountControl Flgs to more human understandable form...
 	 *
 	 *	@param	string		$uacf		UACF
-	 *	@return	void
+	 *	@return	array
 	 */
 	public function parseUACF($uacf)
 	{
@@ -1377,7 +1377,7 @@ class Ldap
 		}
 
 		//Return human friendly flags
-		return($retval);
+		return $retval;
 	}
 
 	/**
@@ -1409,7 +1409,7 @@ class Ldap
 			$retval = "UNKNOWN_TYPE_".$samtype;
 		}
 
-		return($retval);
+		return $retval;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps

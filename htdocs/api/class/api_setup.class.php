@@ -315,8 +315,8 @@ class Setup extends DolibarrApi
 	/**
 	 * Get state by ID.
 	 *
-	 * @param int       $id        ID of state
-	 * @return array    		   Array of cleaned object properties
+	 * @param 	int       $id        	ID of state
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @url     GET dictionary/states/{id}
 	 *
@@ -330,8 +330,8 @@ class Setup extends DolibarrApi
 	/**
 	 * Get state by Code.
 	 *
-	 * @param string    $code      Code of state
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	string    $code      	Code of state
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @url     GET dictionary/states/byCode/{code}
 	 *
@@ -419,10 +419,9 @@ class Setup extends DolibarrApi
 	/**
 	 * Get country by ID.
 	 *
-	 * @param int       $id        ID of country
-	 * @param string    $lang      Code of the language the name of the
-	 *                             country must be translated to
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	int       $id        	ID of country
+	 * @param 	string    $lang      	Code of the language the name of the country must be translated to
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @url     GET dictionary/countries/{id}
 	 *
@@ -436,10 +435,9 @@ class Setup extends DolibarrApi
 	/**
 	 * Get country by Code.
 	 *
-	 * @param string    $code      Code of country (2 characters)
-	 * @param string    $lang      Code of the language the name of the
-	 *                             country must be translated to
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	string    $code      	Code of country (2 characters)
+	 * @param 	string    $lang      	Code of the language the name of the country must be translated to
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @url     GET dictionary/countries/byCode/{code}
 	 *
@@ -453,10 +451,9 @@ class Setup extends DolibarrApi
 	/**
 	 * Get country by Iso.
 	 *
-	 * @param string    $iso       ISO of country (3 characters)
-	 * @param string    $lang      Code of the language the name of the
-	 *                             country must be translated to
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	string    $iso       	ISO of country (3 characters)
+	 * @param 	string    $lang     	Code of the language the name of the country must be translated to
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @url     GET dictionary/countries/byISO/{iso}
 	 *
@@ -470,9 +467,9 @@ class Setup extends DolibarrApi
 	/**
 	 * Get state.
 	 *
-	 * @param int       $id        ID of state
-	 * @param string    $code      Code of state
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	int       $id        	ID of state
+	 * @param 	string    $code      	Code of state
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @throws RestException
 	 */
@@ -493,12 +490,11 @@ class Setup extends DolibarrApi
 	/**
 	 * Get country.
 	 *
-	 * @param int       $id        ID of country
-	 * @param string    $code      Code of country (2 characters)
-	 * @param string    $iso       ISO of country (3 characters)
-	 * @param string    $lang      Code of the language the name of the
-	 *                             country must be translated to
-	 * @return array 			   Array of cleaned object properties
+	 * @param 	int       $id        	ID of country
+	 * @param 	string    $code      	Code of country (2 characters)
+	 * @param 	string    $iso       	ISO of country (3 characters)
+	 * @param 	string    $lang      	Code of the language the name of the country must be translated to
+	 * @return 	Object 					Object with cleaned properties
 	 *
 	 * @throws RestException
 	 */
@@ -522,12 +518,12 @@ class Setup extends DolibarrApi
 	/**
 	 * Get the list of delivery times.
 	 *
-	 * @param string    $sortfield  Sort field
-	 * @param string    $sortorder  Sort order
-	 * @param int       $limit      Number of items per page
-	 * @param int       $page       Page number {@min 0}
-	 * @param int       $active     Delivery times is active or not {@min 0} {@max 1}
-	 * @param string    $sqlfilters SQL criteria to filter with.
+	 * @param string    $sortfield  	Sort field
+	 * @param string    $sortorder  	Sort order
+	 * @param int       $limit      	Number of items per page
+	 * @param int       $page       	Page number {@min 0}
+	 * @param int       $active     	Delivery times is active or not {@min 0} {@max 1}
+	 * @param string    $sqlfilters 	SQL criteria to filter with.
 	 *
 	 * @url     GET dictionary/availability
 	 *
@@ -586,8 +582,8 @@ class Setup extends DolibarrApi
 	/**
 	 * Clean sensible object datas
 	 *
-	 * @param Object    $object    Object to clean
-	 * @return Object 				Object with cleaned properties
+	 * @param 	Object    $object    	Object to clean
+	 * @return 	Object 					Object with cleaned properties
 	 */
 	protected function _cleanObjectDatas($object)
 	{
@@ -1764,8 +1760,8 @@ class Setup extends DolibarrApi
 	/**
 	 * Get establishment by ID.
 	 *
-	 * @param int       $id        ID of establishment
-	 * @return array    		   Array of cleaned object properties
+	 * @param 	int       $id       	ID of establishment
+	 * @return  Object    				Object with cleaned properties
 	 *
 	 * @url     GET establishments/{id}
 	 *
@@ -1791,7 +1787,7 @@ class Setup extends DolibarrApi
 	 * Note that conf variables that stores security key or password hashes can't be loaded with API.
 	 *
 	 * @param	string			$constantname	Name of conf variable to get
-	 * @return  array|mixed 				Data without useless information
+	 * @return  string							Data without useless information
 	 *
 	 * @url     GET conf/{constantname}
 	 *
@@ -1803,7 +1799,7 @@ class Setup extends DolibarrApi
 		global $conf;
 
 		if (!DolibarrApiAccess::$user->admin
-			&& (empty($conf->global->API_LOGINS_ALLOWED_FOR_CONST_READ) || DolibarrApiAccess::$user->login != $conf->global->API_LOGINS_ALLOWED_FOR_CONST_READ)) {
+			&& (!getDolGlobalString('API_LOGINS_ALLOWED_FOR_CONST_READ') || DolibarrApiAccess::$user->login != getDolGlobalString('API_LOGINS_ALLOWED_FOR_CONST_READ'))) {
 			throw new RestException(403, 'Error API open to admin users only or to the users with logins defined into constant API_LOGINS_ALLOWED_FOR_CONST_READ');
 		}
 
@@ -1814,7 +1810,7 @@ class Setup extends DolibarrApi
 			throw new RestException(403, 'Forbidden. This parameter cant be read with APIs');
 		}
 
-		return $conf->global->$constantname;
+		return getDolGlobalString($constantname);
 	}
 
 	/**
