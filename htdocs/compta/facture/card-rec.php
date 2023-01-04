@@ -271,7 +271,7 @@ if (empty($reshook)) {
 	}
 
 	// Delete
-	if ($action == 'confirm_deleteinvoice' && $confirm == 'yes' && $user->rights->facture->supprimer) {
+	if ($action == 'confirm_delete' && $confirm == 'yes' && $user->rights->facture->supprimer) {
 		$object->delete($user);
 
 		header("Location: ".DOL_URL_ROOT.'/compta/facture/invoicetemplate_list.php');
