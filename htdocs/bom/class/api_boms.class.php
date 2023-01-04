@@ -205,8 +205,6 @@ class Boms extends DolibarrApi
 			$this->bom->$field = $value;
 		}
 
-		// Check Ref Numbering
-		// We check that object has a temporary ref
 		$this->CheckRefNumbering();
 
 		if (!$this->bom->create(DolibarrApiAccess::$user)) {
@@ -245,8 +243,6 @@ class Boms extends DolibarrApi
 			$this->bom->$field = $value;
 		}
 
-		// Check Ref Numbering
-		// We check that object has a temporary ref
 		$this->CheckRefNumbering();
 
 		if ($this->bom->update(DolibarrApiAccess::$user) > 0) {
