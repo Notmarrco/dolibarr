@@ -298,7 +298,13 @@ if (!$rowid && $action != 'create' && $action != 'edit') {
 
 		$membertype = new AdherentType($db);
 
-		while ($i < $num) {
+		$i = 0;
+		/*$savnbfield = $totalarray['nbfield'];
+		$totalarray = array();
+		$totalarray['nbfield'] = 0;*/
+
+		$imaxinloop = ($limit ? min($num, $limit) : $num);
+		while ($i < $imaxinloop) {
 			$objp = $db->fetch_object($result);
 
 			$membertype->id = $objp->rowid;
@@ -316,7 +322,7 @@ if (!$rowid && $action != 'create' && $action != 'edit') {
 				}
 				//output kanban
 				$membertype->label = $objp->label;
-				$membertype->getKanbanView('');
+				print $membertype->getKanbanView('');
 				if ($i == ($imaxinloop - 1)) {
 					print '</div>';
 					print '</td></tr>';
