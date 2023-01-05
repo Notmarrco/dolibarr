@@ -1715,10 +1715,6 @@ select.widthcentpercentminusxx, span.widthcentpercentminusxx:not(.select2-select
 	display: inline-block;
 }
 
-.parentonrightofpage {
-  direction: rtl;
-}
-
 
 /* Force values for small screen 767 */
 @media only screen and (max-width: 767px)
@@ -6729,7 +6725,7 @@ dl.dropdown {
 	z-index: 1;
 }
 .dropdown dd ul.selectedfieldsleft {
-	right: auto;
+	<?php echo $right; ?>: auto;
 }
 .dropdown dd ul li {
 	white-space: nowrap;
