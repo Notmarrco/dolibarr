@@ -1279,7 +1279,7 @@ class Societe extends CommonObject
 		// Clean parameters
 		$this->id = $id;
 		$this->entity = ((isset($this->entity) && is_numeric($this->entity)) ? $this->entity : $conf->entity);
-		$this->name = $this->name ?trim($this->name) : trim($this->nom);
+		$this->name = $this->name ? trim($this->name) : trim($this->nom);
 		$this->nom = $this->name; // For backward compatibility
 		$this->name_alias = trim($this->name_alias);
 		$this->ref_ext		= trim($this->ref_ext);
@@ -2225,6 +2225,7 @@ class Societe extends CommonObject
 			}
 
 			$this->db->commit();
+
 			return 1;
 		}
 	}
@@ -2286,6 +2287,8 @@ class Societe extends CommonObject
 			$this->db->commit();
 			return 1;
 		}
+
+		return -1;
 	}
 
 	// phpcs:disable PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps
@@ -3099,6 +3102,8 @@ class Societe extends CommonObject
 		} else {
 			dol_print_error($this->db);
 		}
+
+		return '';
 	}
 
 
@@ -3481,9 +3486,9 @@ class Societe extends CommonObject
 			} else {
 				return -1;
 			}
-		} else {
-			return -1;
 		}
+
+		return -1;
 	}
 
 	/**
@@ -4827,6 +4832,8 @@ class Societe extends CommonObject
 		} elseif ($status == 3) {
 			return $langs->trans("ProspectCustomer");
 		}
+
+		return '';
 	}
 
 
