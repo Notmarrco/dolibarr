@@ -1417,7 +1417,7 @@ if (!function_exists("llxHeader")) {
 		}
 
 		if (empty($conf->dol_hide_leftmenu) && !GETPOST('dol_openinpopup', 'aZ09')) {
-			left_menu('', $help_url, '', '', 1, $title, 1); // $menumanager is retrieved with a global $menumanager inside this function
+			left_menu(array(), $help_url, '', '', 1, $title, 1); // $menumanager is retrieved with a global $menumanager inside this function
 		}
 
 		// main area
