@@ -101,31 +101,41 @@ function getDolGlobalInt($key, $default = 0)
 }
 
 /**
- * Return dolibarr user constant string value
+ * Return Dolibarr user constant string value
  *
  * @param string $key 		key to return value, return '' if not set
  * @param string $default 	value to return
+ * @param User   $tmpuser   To get another user than current user
  * @return string
  */
-function getDolUserString($key, $default = '')
+function getDolUserString($key, $default = '', $tmpuser = null)
 {
-	global $user;
+	if (empty($tmpuser)) {
+		global $user;
+		$tmpuser = $user;
+	}
+
 	// return $conf->global->$key ?? $default;
-	return (string) (empty($user->conf->$key) ? $default : $user->conf->$key);
+	return (string) (empty($tmpuser->conf->$key) ? $default : $$tmpuser->conf->$key);
 }
 
 /**
- * Return dolibarr user constant int value
+ * Return Dolibarr user constant int value
  *
  * @param string 	$key 			key to return value, return 0 if not set
  * @param int 		$default 		value to return
+ * @param User   	$tmpuser   		To get another user than current user
  * @return int
  */
-function getDolUserInt($key, $default = 0)
+function getDolUserInt($key, $default = 0, $tmpuser = null)
 {
-	global $user;
+	if (empty($tmpuser)) {
+		global $user;
+		$tmpuser = $user;
+	}
+
 	// return $conf->global->$key ?? $default;
-	return (int) (empty($user->conf->$key) ? $default : $user->conf->$key);
+	return (int) (empty($tmpuser->conf->$key) ? $default : $tmpuser->conf->$key);
 }
 
 /**
@@ -1734,7 +1744,7 @@ function dol_syslog($message, $level = LOG_INFO, $ident = 0, $suffixinfilename =
  *
  *	@param	string	$name				A name for the html component
  *	@param	string	$label 	    		Label shown in Popup title top bar
- *	@param  string	$buttonstring  		button string
+ *	@param  string	$buttonstring  		button string (HTML text we can click on)
  *	@param  string	$url				Relative Url to open. For example '/project/card.php'
  *  @param	string	$disabled			Disabled text
  *  @param	string	$morecss			More CSS
@@ -1742,7 +1752,7 @@ function dol_syslog($message, $level = LOG_INFO, $ident = 0, $suffixinfilename =
  *  									Value is 'keyforpopupid:Name_of_html_component_to_set_with id,Name_of_html_component_to_set_with_label'
  * 	@return	string						HTML component with button
  */
-function dolButtonToOpenUrlInDialogPopup($name, $label, $buttonstring, $url, $disabled = '', $morecss = 'button bordertransp', $backtopagejsfields = '')
+function dolButtonToOpenUrlInDialogPopup($name, $label, $buttonstring, $url, $disabled = '', $morecss = 'classlink button bordertransp', $backtopagejsfields = '')
 {
 	global $conf;
 
@@ -1770,7 +1780,7 @@ function dolButtonToOpenUrlInDialogPopup($name, $label, $buttonstring, $url, $di
 
 	//print '<input type="submit" class="button bordertransp"'.$disabled.' value="'.dol_escape_htmltag($langs->trans("MediaFiles")).'" name="file_manager">';
 	$out .= '<!-- a link for button to open url into a dialog popup with backtopagejsfields = '.$backtopagejsfields.' -->';
-	$out .= '<a class="cursorpointer classlink button_'.$name.($morecss ? ' '.$morecss : '').'"'.$disabled.' title="'.dol_escape_htmltag($label).'"';
+	$out .= '<a class="cursorpointer button_'.$name.($morecss ? ' '.$morecss : '').'"'.$disabled.' title="'.dol_escape_htmltag($label).'"';
 	if (empty($conf->use_javascript_ajax)) {
 		$out .= ' href="'.DOL_URL_ROOT.$url.'" target="_blank"';
 	}
@@ -2256,6 +2266,7 @@ function dol_banner_tab($object, $paramid, $morehtml = '', $shownav = 1, $fieldi
 		}
 	}
 
+	// Show barcode
 	if ($showbarcode) {
 		$morehtmlleft .= '<div class="floatleft inline-block valignmiddle divphotoref">'.$form->showbarcode($object, 100, 'photoref valignmiddle').'</div>';
 	}
@@ -3031,9 +3042,10 @@ function dol_print_size($size, $shortvalue = 0, $shortunit = 0)
  * @param	string		$target		Target for link
  * @param	int			$max		Max number of characters to show
  * @param	int			$withpicto	With picto
+ * @param	string		$morecss	More CSS
  * @return	string					HTML Link
  */
-function dol_print_url($url, $target = '_blank', $max = 32, $withpicto = 0)
+function dol_print_url($url, $target = '_blank', $max = 32, $withpicto = 0, $morecss = 'float')
 {
 	global $langs;
 
@@ -3056,7 +3068,12 @@ function dol_print_url($url, $target = '_blank', $max = 32, $withpicto = 0)
 	}
 	$link .= dol_trunc($url, $max);
 	$link .= '</a>';
-	return '<div class="nospan float" style="margin-right: 10px">'.($withpicto ?img_picto($langs->trans("Url"), 'globe').' ' : '').$link.'</div>';
+
+	if ($morecss == 'float') {
+		return '<div class="nospan'.($morecss ? ' '.$morecss : '').'" style="margin-right: 10px">'.($withpicto ?img_picto($langs->trans("Url"), 'globe').' ' : '').$link.'</div>';
+	} else {
+		return '<span class="nospan'.($morecss ? ' '.$morecss : '').'" style="margin-right: 10px">'.($withpicto ?img_picto($langs->trans("Url"), 'globe').' ' : '').$link.'</span>';
+	}
 }
 
 /**
@@ -4179,7 +4196,7 @@ function img_picto($titlealt, $picto, $moreatt = '', $pictoisfullpath = false, $
 				'supplier'=>'building', 'technic'=>'cogs',
 				'timespent'=>'clock', 'title_setup'=>'tools', 'title_accountancy'=>'money-check-alt', 'title_bank'=>'university', 'title_hrm'=>'umbrella-beach',
 				'title_agenda'=>'calendar-alt',
-				'uncheck'=>'times', 'uparrow'=>'share', 'url'=>'external-link-alt', 'vat'=>'money-check-alt', 'vcard'=>'address-card',
+				'uncheck'=>'times', 'uparrow'=>'share', 'url'=>'external-link-alt', 'vat'=>'money-check-alt', 'vcard'=>'arrow-alt-circle-down',
 				'jabber'=>'comment-o',
 				'website'=>'globe-americas', 'workstation'=>'pallet', 'webhook'=>'bullseye', 'world'=>'globe', 'private'=>'user-lock',
 				'conferenceorbooth'=>'chalkboard-teacher', 'eventorganization'=>'project-diagram'
