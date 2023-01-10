@@ -2893,7 +2893,7 @@ if ($resql) {
 
 			// Status
 			if (!empty($arrayfields['c.fk_statut']['checked'])) {
-				print '<td class="nowrap center">'.$generic_commande->LibStatut($obj->fk_statut, $obj->billed, 5, 1).'</td>';
+				print '<td class="nowrap right">'.$generic_commande->LibStatut($obj->fk_statut, $obj->billed, 5, 1).'</td>';
 				if (!$i) {
 					$totalarray['nbfield']++;
 				}
