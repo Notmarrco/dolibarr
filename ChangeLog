@@ -135,7 +135,6 @@ NEW: Can sort on preselected best supplier price
 NEW: Can use products categories to make inventory
 NEW: Change filter type on tickets list into a multiselect combo
 NEW: conf TIMESPENT_ALWAYS_UPDATE_THM, when it's on we always check current thm of user to update it in task time line
-NEW: constant PROPAL_NEW_AS_SIGNED
 NEW: show date delivery planned on orders linked to company and product
 NEW: Default doc template of contracts is not mandatory
 NEW: Default values in extrafields are no more limited to 255 char.
@@ -147,6 +146,8 @@ NEW: Contracts: Default template of contract is not mandatory
 NEW: Contracts: Manage Position (Rank) on Contract Lines
 NEW: EMail-Collector: add IMAP port setting 
 NEW: EMail-Collector: add a button "Test collect"
+NEW: Extrafields: field price with currency
+NEW: Extrafields: support IP type in extrafields
 NEW: Members: default_lang for members
 NEW: Members: Table of membership types
 NEW: Members: add free membership amounts at the membership type level
@@ -173,15 +174,12 @@ NEW: Invoice - Add french mention on pdf when vat debit option is on
 NEW: invoice export : add accounting affectation
 NEW: label on products categories filter
 NEW: The link "add to bookmark" is always on top in the bookmark popup
-NEW: MAIN_SEARCH_CATEGORY_PRODUCT_ON_LISTS const to show category customer filter
 NEW: Make module WebservicesClient deprecated. Use module WebHook instead.
 NEW: manage no email with thirdparties (better for GDPR)
 NEW: Manage VAT on all lines on purchases cycle
 NEW: Page to show virtual stock at a future date
 NEW: On a bank reconciled line, we can modify the bank receipt
 NEW: On a form to send an email, we show all emails of all contacts of object
-NEW: Option PRODUCTBATCH_SHOW_WAREHOUSE_ON_SHIPMENT showing wh on PDF
-NEW: Option PRODUIT_DESC_IN_FORM accept (desktop only or +smartphone)
 NEW: Page for mass stock transfer can be used with no source stock
 NEW: parent company column and filter in invoice and order list
 NEW: Add "Show Sales rep" option for PDF
@@ -216,12 +214,19 @@ NEW: expand/collapse permissions on user permission page
 NEW: Add the target to select attendees of event for emailings
 NEW: Can set background style with MAIN_LOGIN_BACKGROUND_STYLE
 
+ Option / Const for System: 
+NEW: Option PRODUCTBATCH_SHOW_WAREHOUSE_ON_SHIPMENT showing warehouse on PDF
+NEW: Option PRODUIT_DESC_IN_FORM accept (desktop only or +smartphone)
+NEW: MAIN_SEARCH_CATEGORY_PRODUCT_ON_LISTS const to show category customer filter
+NEW: constant PROPAL_NEW_AS_SIGNED
+
  Localisation:
 NEW: adding JAPAN Chart-of-Account and regions/departments
 NEW: adding NIF verification for Algeria
 
  Modules
 NEW: Experimental module Asset
+NEW: Init module bookcal
 
 
 For developers or integrators:
@@ -232,14 +237,6 @@ NEW: #22370 Modulebuilder supports 'alwayseditable' (like extrafields)
 NEW: #20912 Add trigger to record the event of sending an email from a project
 NEW: #21750 Added "Get lines and Post lines from BOM" at the REST Service
 NEW: #22370 Modulebuilder supports 'alwayseditable' (like extrafields)
-NEW: Removed completely the need for the library adodbtime
-NEW: hook on agenda pages
-NEW: hook to complete payment in TakePOS
-NEW: hook "changeHelpURL" to modify target of the help button
-NEW: hook formConfirm on action comm card
-NEW: hook to modify supplier product html select
-NEW: Add new hook for show virtual stock details on product stock card
-NEW: Add new hooks for actioncomm
 NEW: conf->global->SYSLOG_FILE_ONEPERSESSION accept a string
 NEW: translation for contact type API, setup/ticket API, shipping method API
 NEW: All ajax pages have now a header build with top_httphead()
