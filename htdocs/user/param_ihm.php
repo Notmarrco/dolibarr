@@ -225,7 +225,6 @@ if ($reshook < 0) {
 	$tmparray=array_merge($tmparray, $hookmanager->resArray);
 }
 
-
 $head = user_prepare_head($object);
 
 $title = $langs->trans("User");
