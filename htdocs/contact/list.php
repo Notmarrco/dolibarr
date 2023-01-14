@@ -482,7 +482,7 @@ if (!empty($searchCategoryContactList)) {
 	}
 }
 
- // Search Customer Categories 
+ // Search Customer Categories
 $searchCategoryCustomerList = $search_categ_thirdparty ? array($search_categ_thirdparty) : array();
 $searchCategoryCustomerOperator = 0;
  // Search for tag/category ($searchCategoryCustomerList is an array of ID)
@@ -971,7 +971,7 @@ if (!empty($arrayfields['p.town']['checked'])) {
  print '<input class="flat searchstring" size="4" type="text" name="search_state" value="'.dol_escape_htmltag($search_state).'">';
  print '</td>';
  }
- 
+
  // Region
  if (!empty($arrayfields['region.nom']['checked']))
  {
@@ -1257,7 +1257,7 @@ while ($i < min($num, $limit)) {
 			}
 			print '</td>';
 		}
-		
+
 		// ID
 		if (!empty($arrayfields['p.rowid']['checked'])) {
 			print '<td class="tdoverflowmax50">';
@@ -1267,7 +1267,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// (Last) Name
 		if (!empty($arrayfields['p.lastname']['checked'])) {
 			print '<td class="middle tdoverflowmax150">';
@@ -1277,7 +1277,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Firstname
 		if (!empty($arrayfields['p.firstname']['checked'])) {
 			print '<td class="tdoverflowmax150" title="'.dol_escape_htmltag($obj->firstname).'">'.dol_escape_htmltag($obj->firstname).'</td>';
@@ -1285,7 +1285,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Job position
 		if (!empty($arrayfields['p.poste']['checked'])) {
 			print '<td class="tdoverflowmax100">'.dol_escape_htmltag($obj->poste).'</td>';
@@ -1293,7 +1293,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Address
 		if (!empty($arrayfields['p.address']['checked'])) {
 			print '<td>'.dol_escape_htmltag($obj->address).'</td>';
@@ -1301,7 +1301,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Zip
 		if (!empty($arrayfields['p.zip']['checked'])) {
 			print '<td>'.dol_escape_htmltag($obj->zip).'</td>';
@@ -1309,7 +1309,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Town
 		if (!empty($arrayfields['p.town']['checked'])) {
 			print '<td class="tdoverflowmax100" title="'.dol_escape_htmltag($obj->town).'">'.dol_escape_htmltag($obj->town).'</td>';
@@ -1317,7 +1317,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		/*
 		// State
 		if (!empty($arrayfields['state.nom']['checked']))
@@ -1325,14 +1325,14 @@ while ($i < min($num, $limit)) {
 			print "<td>".$obj->state_name."</td>\n";
 			if (! $i) $totalarray['nbfield']++;
 		}
-		
+
 		// Region
 		if (!empty($arrayfields['region.nom']['checked']))
 		{
 			print "<td>".$obj->region_name."</td>\n";
 			if (! $i) $totalarray['nbfield']++;
 		}*/
-		
+
 		// Country
 		if (!empty($arrayfields['country.code_iso']['checked'])) {
 			print '<td class="center">';
@@ -1343,7 +1343,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Phone pro
 		if (!empty($arrayfields['p.phone']['checked'])) {
 			print '<td class="nowraponall tdoverflowmax150">'.dol_print_phone($obj->phone_pro, $obj->country_code, $obj->rowid, $obj->socid, 'AC_TEL', ' ', 'phone').'</td>';
@@ -1351,7 +1351,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Phone perso
 		if (!empty($arrayfields['p.phone_perso']['checked'])) {
 			print '<td class="nowraponall tdoverflowmax150">'.dol_print_phone($obj->phone_perso, $obj->country_code, $obj->rowid, $obj->socid, 'AC_TEL', ' ', 'phone').'</td>';
@@ -1359,7 +1359,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Phone mobile
 		if (!empty($arrayfields['p.phone_mobile']['checked'])) {
 			print '<td class="nowraponall tdoverflowmax150">'.dol_print_phone($obj->phone_mobile, $obj->country_code, $obj->rowid, $obj->socid, 'AC_TEL', ' ', 'mobile').'</td>';
@@ -1367,7 +1367,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Fax
 		if (!empty($arrayfields['p.fax']['checked'])) {
 			print '<td class="nowraponall tdoverflowmax150">'.dol_print_phone($obj->fax, $obj->country_code, $obj->rowid, $obj->socid, 'AC_TEL', ' ', 'fax').'</td>';
@@ -1375,7 +1375,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// EMail
 		if (!empty($arrayfields['p.email']['checked'])) {
 			print '<td class="nowraponall tdoverflowmax300">'.dol_print_email($obj->email, $obj->rowid, $obj->socid, 'AC_EMAIL', 18, 0, 1).'</td>';
@@ -1383,7 +1383,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// No EMail Subscription
 		if (!empty($arrayfields['unsubscribed']['checked'])) {
 			print '<td class="center">';
@@ -1397,7 +1397,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Social Networks
 		if (isModEnabled('socialnetworks')) {
 			foreach ($socialnetworks as $key => $value) {
@@ -1510,7 +1510,7 @@ while ($i < min($num, $limit)) {
 
 		// Extra fields
 		include DOL_DOCUMENT_ROOT.'/core/tpl/extrafields_list_print_fields.tpl.php';
-		
+
 		// Fields from hook
 		$parameters = array('arrayfields'=>$arrayfields, 'obj'=>$obj, 'i'=>$i, 'totalarray'=>&$totalarray);
 		$reshook = $hookmanager->executeHooks('printFieldListValue', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
@@ -1524,7 +1524,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Date modification
 		if (!empty($arrayfields['p.tms']['checked'])) {
 			print '<td class="center nowraponall">';
@@ -1534,7 +1534,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Status
 		if (!empty($arrayfields['p.statut']['checked'])) {
 			print '<td class="center">'.$contactstatic->getLibStatut(5).'</td>';
@@ -1542,7 +1542,7 @@ while ($i < min($num, $limit)) {
 				$totalarray['nbfield']++;
 			}
 		}
-		
+
 		// Import key
 		if (!empty($arrayfields['p.import_key']['checked'])) {
 			print '<td class="tdoverflowmax100">';
