@@ -1533,7 +1533,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 				$huser = new User($db);
 				if ($object->fk_user > 0) {
 					$huser->fetch($object->fk_user);
-					print $huser->getNomUrl(1);
+					print $huser->getNomUrl(-1);
 				} else {
 					print '<span class="opacitymedium">'.$langs->trans("None").'</span>';
 				}
@@ -1551,7 +1551,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 				if (!empty($object->fk_user_expense_validator)) {
 					$evuser = new User($db);
 					$evuser->fetch($object->fk_user_expense_validator);
-					print $evuser->getNomUrl(1);
+					print $evuser->getNomUrl(-1);
 				}
 				print '</td>';
 				print "</tr>\n";
@@ -1567,7 +1567,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 				if (!empty($object->fk_user_holiday_validator)) {
 					$hvuser = new User($db);
 					$hvuser->fetch($object->fk_user_holiday_validator);
-					print $hvuser->getNomUrl(1);
+					print $hvuser->getNomUrl(-1);
 				}
 				print '</td>';
 				print "</tr>\n";
@@ -2282,7 +2282,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 				print '<input type="hidden" name="fk_user" value="'.$object->fk_user.'">';
 				$huser = new User($db);
 				$huser->fetch($object->fk_user);
-				print $huser->getNomUrl(1);
+				print $huser->getNomUrl(-1);
 			}
 			print '</td>';
 			print "</tr>\n";
@@ -2300,7 +2300,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 					print '<input type="hidden" name="fk_user_expense_validator" value="'.$object->fk_user_expense_validator.'">';
 					$evuser = new User($db);
 					$evuser->fetch($object->fk_user_expense_validator);
-					print $evuser->getNomUrl(1);
+					print $evuser->getNomUrl(-1);
 				}
 				print '</td>';
 				print "</tr>\n";
@@ -2319,7 +2319,7 @@ if ($action == 'create' || $action == 'adduserldap') {
 					print '<input type="hidden" name="fk_user_holiday_validator" value="'.$object->fk_user_holiday_validator.'">';
 					$hvuser = new User($db);
 					$hvuser->fetch($object->fk_user_holiday_validator);
-					print $hvuser->getNomUrl(1);
+					print $hvuser->getNomUrl(-1);
 				}
 				print '</td>';
 				print "</tr>\n";
