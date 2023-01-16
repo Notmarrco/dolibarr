@@ -6319,7 +6319,6 @@ class Product extends CommonObject
 		$return .= '<div class="info-box info-box-sm">';
 		$return .= '<div class="info-box-img">';
 		$label = '';
-
 		if ($this->is_photo_available($conf->product->multidir_output[$this->entity])) {
 				$label .= $this->show_photos('product', $conf->product->multidir_output[$this->entity]);
 				$return .= $label;
@@ -6331,7 +6330,6 @@ class Product extends CommonObject
 			}
 			$return .= $label;
 		}
-
 		$return .= '</div>';
 		$return .= '<div class="info-box-content">';
 		$return .= '<span class="info-box-ref">'.(method_exists($this, 'getNomUrl') ? $this->getNomUrl() : $this->ref).'</span>';
