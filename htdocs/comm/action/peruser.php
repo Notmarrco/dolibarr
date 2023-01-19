@@ -628,7 +628,6 @@ if ($mode == 'show_day') {
 if ($type) {
 	$sql .= " AND ca.id = ".((int) $type);
 }
-var_dump($status);
 if ($status == '0') {
 	$sql .= " AND a.percent = 0";
 }
