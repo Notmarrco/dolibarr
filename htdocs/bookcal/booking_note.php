@@ -28,7 +28,7 @@ dol_include_once('/bookcal/class/booking.class.php');
 dol_include_once('/bookcal/lib/bookcal_booking.lib.php');
 
 // Load translation files required by the page
-$langs->loadLangs(array("bookcal@bookcal", "companies"));
+$langs->loadLangs(array("agenda", "companies"));
 
 // Get parameters
 $id = GETPOST('id', 'int');
