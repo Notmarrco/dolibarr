@@ -1411,6 +1411,7 @@ abstract class CommonObject
 					$transkey = "TypeContact_".$obj->element."_".$obj->source."_".$obj->code;
 					$libelle_type = ($langs->trans($transkey) != $transkey ? $langs->trans($transkey) : $obj->libelle);
 					$tab[$i] = array(
+						'parentId' => $this->id,
 						'source' => $obj->source,
 						'socid' => $obj->socid,
 						'id' => $obj->id,
