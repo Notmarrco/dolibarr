@@ -66,6 +66,7 @@ NEW: Minimal PHP version is now PHP 7.0 instead of PHP 5.6
 NEW: #21780 Add pid field to Cronjob class and store PID on job execution
 NEW: #20650 can move the checkbox column on left (experimental option MAIN_CHECKBOX_LEFT_COLUMN)
 NEW: #21000 Added columns 'alias_name' on project, supplier invoice, supplier order, supplier proposals and task list
+NEW: #21780 Add pid field to Cronjob class and store PID on job execution
 NEW: #21395 Added option for dark theme mode in display - color and theme
 NEW: #21397 added option to auto define barcode numbers for third-parties in barcode module setup
 NEW: #21399
@@ -83,15 +84,11 @@ NEW: #22622 all partnerships displayed on tab partnership of a thirdparty and me
 NEW: #22676 massaction for updating product prices
 NEW: #22735 Massaction to assign users on projects
 NEW: #4482 adding js to hide/show advanced option on the export data page
+
 NEW: Add a constant to disallow modification of the product reference.
-NEW: Add a method doAutoRenewContracts that can be used as a cron task.
-NEW: Add " as enclosure by default for CSV export. Keep removing CR/LF.
 NEW: add attached file in presend email form of thirdparty card
 NEW: Add a way to enter LICENSE file content in property of website
-NEW: add constant PROPAL_BYPASS_VALIDATED_STATUS
 NEW: Add employment anniversary in birthday box
-NEW: Add fail2ban rules examples to limit access to /public pages
-NEW: Add filter "Product subject to lot/Serial" in stock per lot/serial
 NEW: Add hidden option MAIN_EMAIL_SUPPORT_ACK to restore Email ack checkbox (feature abandonned by mailers)
 NEW: Add link to create an element from the category page
 NEW: Add max size send for "backup and link to mail" option
@@ -101,13 +98,26 @@ NEW: Add new global variable for keeping the previous signature information on p
 NEW: Add objectLink on shipment
 NEW: Add option --force on CLI cron_run_jobs.php
 NEW: Add option "Show price on the generated documents for receptions"
-NEW: Add performance index (name for company and contact) and llx_bank_url(url_id)
-NEW: Add picto property on sub-module for password generation
+NEW: invoice export : add accounting affectation
+NEW: label on products categories filter
+NEW: manage no email with thirdparties (better for GDPR)
+NEW: Manage VAT on all lines on purchases cycle
+NEW: On a bank reconciled line, we can modify the bank receipt
+NEW: parent company column and filter in invoice and order list
+NEW: possibility to select scopes with checkbox for Oauth tokens
+NEW: private and public note on user, thirdparty and contact list
+NEW: Public counters feature
+NEW: Saved token of OAUTH module are now encrypted into llx_oauth_token
+NEW: Save one click to select on delivery ack, on emails.
+NEW: scheduled job to send unpaid invoice reminder can now use the cc and bcc from email template
+NEW: experimental SMTP using PhpImap allowing OAuth2 authentication (need to add option MAIN_IMAP_USE_PHPIMAP)
+NEW: can substitue project title in mail template
+NEW: The purge of files can purge only if older than a number of seconds
+NEW: Update ActionComm type_code on email message ticket
+NEW: Finance - VAT - Admin - Add information on deadline day for submission of VAT declaration
+NEW: Add the target to select attendees of event for emailings
 NEW: add redirect on action confirm addconsumedline and addproduceline
-NEW: Add a new advanced permission "read price"
-NEW: Add substitution key __SENDEREMAIL_SIGNATURE__
 NEW: Add the referrer-policy to "same-origin" by default on all public pages.
-NEW: Add the SMTP header References on ticket email created by email
 NEW: Add trigger to record the event of sending an email from a project #20912
 NEW: Allow download link option in module configuration (propal,invoice,supplier proposal, order)
 NEW: Bulk action to remove a category in list/search website pages
@@ -116,9 +126,7 @@ NEW: Can edit label of an emailing even once sent
 NEW: Can edit property css, cssview, csslist on extrafields
 NEW: Can enter the unit price including the vat when adding new product lines on invoices, orders, proposals, ...
 NEW: Can invoice task time per different services
-NEW: Can join several files by default on email form
 NEW: Can set a commercial discount by entering amount including VAT
-NEW: Can set a monthly frequency (or multiple) in cron tasks.
 NEW: Can set start and end dates and comment on button "Activate all services"
 NEW: Can sort on preselected best supplier price
 NEW: Can use products categories to make inventory
@@ -162,8 +170,10 @@ NEW: Invoice - Add french mention on pdf when vat debit option is on
 NEW: Members - default_lang for members
 NEW: Members - Table of membership types
 NEW: Members - add free membership amounts at the membership type level
+NEW: Orders - resize parent company column in order list
+NEW: Products supplier price - autofill default supplier VAT
 NEW: Projects - add author on list
-NEW: Projects - add the thirdparty column to the time list (projet/tasks/time.php)
+NEW: Projects - add thirdparty column to the time list (projet/tasks/time.php)
 NEW: Proposals - show delivery mode on PDF for proposals
 NEW: Proposals - skip accept/refuse process for proposals (option PROPAL_SKIP_ACCEPT_REFUSE)
 NEW: Reception - add a from/to on search on date field
@@ -171,15 +181,19 @@ NEW: Stock - page for mass stock transfer can be used with no source stock
 NEW: Stock - product categories filter on inventory list
 NEW: Stock - show product label on inventory
 NEW: Stock - manage virtual stock at a future date
+NEW: Stock Inventory - add filter "Product subject to lot/Serial" in stock per lot/serial
+NEW: Stock Inventory - can use products categories to make inventory
+NEW: Supplier Order List - add column private and public note
 NEW: TakePOS - add margin infos to TakePOS invoice lines
-NEW: TakePOS - display currency in TakePOS menu
-NEW: TakePOS - Header Scroll in TakePOS
 NEW: TakePOS - add price to product box in TakePOS
 NEW: TakePOS - add setup parameters, can setup terminal name
-NEW: TakePOS - support of Stripe Terminal with TakePOS
-NEW: TakePOS - Receipt preview in TakePOS setup
 NEW: TakePOS - different product list on smartphone
+NEW: TakePOS - display currency in TakePOS menu
+NEW: TakePOS - Header Scroll in TakePOS
+NEW: TakePOS - Receipt preview in TakePOS setup
+NEW: TakePOS - support of Stripe Terminal with TakePOS
 NEW: Thirdparty - set thirdparty type with company modify trigger
+NEW: Tickets - change filter type on tickets list into a multiselect combo
 NEW: Website - can delete a whole website if disabled
 NEW: Website - can remove a website template
 NEW: Website - can set header "Strict-Transport-Security" in web sites.
@@ -228,11 +242,13 @@ NEW: Add the target to select attendees of event for emailings
 NEW: Can set background style with MAIN_LOGIN_BACKGROUND_STYLE
 
  Option / Const for System: 
-NEW: MAIN_SEARCH_CATEGORY_PRODUCT_ON_LISTS  const to show category customer filter
-NEW: PRODUCTBATCH_SHOW_WAREHOUSE_ON_SHIPMENT showing warehouse on PDF
-NEW: PRODUIT_DESC_IN_FORM accept (desktop only or +smartphone)
+NEW: FICHINTER_ALLOW_EXTERNAL_DOWNLOAD
+NEW: MAIN_SEARCH_CATEGORY_PRODUCT_ON_LISTS  -  const to show category customer filter
+NEW: PRODUCTBATCH_SHOW_WAREHOUSE_ON_SHIPMENT  -  showing warehouse on PDF
+NEW: PRODUIT_DESC_IN_FORM accept  -  desktop only or +smartphone
+NEW: PROPAL_BYPASS_VALIDATED_STATUS
 NEW: PROPAL_NEW_AS_SIGNED
-NEW: TIMESPENT_ALWAYS_UPDATE_THM, when it's on we always check current thm of user to update it in task time line
+NEW: TIMESPENT_ALWAYS_UPDATE_THM  -  when it's on we always check current thm of user to update it in task time line
 
  Localisation:
 NEW: adding JAPAN Chart-of-Account and regions/departments
