@@ -667,71 +667,54 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 
 	$res = $object->fetchLines();
 
-	// Buttons for actions
+		// Buttons for actions
 
-	if ($action != 'presend' && $action != 'editline') {
-		print '<div class="tabsAction">'."\n";
-		$parameters = array();
-		$reshook = $hookmanager->executeHooks('addMoreActionsButtons', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
-		if ($reshook < 0) {
-			setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
-		}
-
-		if (empty($reshook)) {
-			// Send
-			//if (empty($user->socid)) {
-			//	print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&mode=init#formmailbeforetitle">' . $langs->trans('SendMail') . '</a>'."\n";
-			//}
-
-			// Back to draft
-			if ($object->status == $object::STATUS_VALIDATED) {
-				if ($permissiontoadd) {
-					print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&action=setdraft&token='.newToken().'">'.$langs->trans("SetToDraft").'</a>'."\n";
-				}
+		if ($action != 'presend' && $action != 'editline') {
+			print '<div class="tabsAction">' . "\n";
+			$parameters = array();
+			$reshook = $hookmanager->executeHooks('addMoreActionsButtons', $parameters, $object, $action); // Note that $action and $object may have been modified by hook
+			if ($reshook < 0) {
+				setEventMessages($hookmanager->error, $hookmanager->errors, 'errors');
 			}
 
-			// Modify
-			if ($object->status == $object::STATUS_DRAFT) {
-				if ($permissiontoadd) {
-					print '<a class="butAction" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=edit&token='.newToken().'">'.$langs->trans("Modify").'</a>'."\n";
-				} else {
-					print '<a class="butActionRefused classfortooltip" href="#" title="'.dol_escape_htmltag($langs->trans("NotEnoughPermissions")).'">'.$langs->trans('Modify').'</a>'."\n";
-				}
-			}
+			if (empty($reshook)) {
+				// Send
+				//if (empty($user->socid)) {
+				//	print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=presend&mode=init#formmailbeforetitle">' . $langs->trans('SendMail') . '</a>'."\n";
+				//}
 
-			// Validate
-			if ($object->status == $object::STATUS_DRAFT) {
-				if ($permissiontoadd) {
-					if (is_array($object->lines) && count($object->lines) > 0) {
-						print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&amp;action=validate&amp;token='.newToken().'">'.$langs->trans("Validate").'</a>'."\n";
-					} else {
-						$langs->load("errors");
-						print '<a class="butActionRefused" href="" title="'.$langs->trans("ErrorAddAtLeastOneLineFirst").'">'.$langs->trans("Validate").'</a>'."\n";
+				// Back to draft
+				if ($object->status == $object::STATUS_VALIDATED) {
+					if ($permissiontoadd) {
+						print '<a class="butAction" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&action=setdraft&token=' . newToken() . '">' . $langs->trans("SetToDraft") . '</a>' . "\n";
 					}
 				}
-			}
 
-			// Re-open
-			if ($permissiontoadd && $object->status == $object::STATUS_CANCELED) {
-				print '<a class="butAction" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&action=reopen&token='.newToken().'">'.$langs->trans("ReOpen").'</a>'."\n";
-			}
-
-			// Create MO
-			if (isModEnabled('mrp')) {
-				if ($object->status == $object::STATUS_VALIDATED && !empty($user->rights->mrp->write)) {
-					print '<a class="butAction" href="'.DOL_URL_ROOT.'/mrp/mo_card.php?action=create&fk_bom='.$object->id.'&token='.newToken().'&backtopageforcancel='.urlencode($_SERVER["PHP_SELF"].'?id='.$object->id).'">'.$langs->trans("CreateMO").'</a>'."\n";
+				// Modify
+				if ($object->status == $object::STATUS_DRAFT) {
+					if ($permissiontoadd) {
+						print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=edit&token=' . newToken() . '">' . $langs->trans("Modify") . '</a>' . "\n";
+					} else {
+						print '<a class="butActionRefused classfortooltip" href="#" title="' . dol_escape_htmltag($langs->trans("NotEnoughPermissions")) . '">' . $langs->trans('Modify') . '</a>' . "\n";
+					}
 				}
-			}
 
-			// Clone
-			if ($permissiontoadd) {
-				print dolGetButtonAction($langs->trans("ToClone"), '', 'default', $_SERVER['PHP_SELF'].'?id='.$object->id.(!empty($object->socid) ? '&socid='.$object->socid : "").'&action=clone&object=bom', 'clone', $permissiontoadd);
-			}
+				// Validate
+				if ($object->status == $object::STATUS_DRAFT) {
+					if ($permissiontoadd) {
+						if (is_array($object->lines) && count($object->lines) > 0) {
+							print '<a class="butAction" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&amp;action=validate&amp;token=' . newToken() . '">' . $langs->trans("Validate") . '</a>' . "\n";
+						} else {
+							$langs->load("errors");
+							print '<a class="butActionRefused" href="" title="' . $langs->trans("ErrorAddAtLeastOneLineFirst") . '">' . $langs->trans("Validate") . '</a>' . "\n";
+						}
+					}
+				}
 
-			// Close / Cancel
-			if ($permissiontoadd && $object->status == $object::STATUS_VALIDATED) {
-				print '<a class="butActionDelete" href="'.$_SERVER['PHP_SELF'].'?id='.$object->id.'&action=close&token='.newToken().'">'.$langs->trans("Disable").'</a>'."\n";
-			}
+				// Re-open
+				if ($permissiontoadd && $object->status == $object::STATUS_CANCELED) {
+					print '<a class="butAction" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&action=reopen&token=' . newToken() . '">' . $langs->trans("ReOpen") . '</a>' . "\n";
+				}
 
 			/*
 			 if ($user->rights->bom->write)
@@ -747,62 +730,87 @@ if ($object->id > 0 && (empty($action) || ($action != 'edit' && $action != 'crea
 			 }
 			 */
 
-			// Delete
-			print dolGetButtonAction($langs->trans("Delete"), '', 'delete', $_SERVER["PHP_SELF"].'?id='.$object->id.'&action=delete&token='.newToken(), 'delete', $permissiontodelete);
+				// Clone
+				if ($permissiontoadd) {
+					print dolGetButtonAction($langs->trans("ToClone"), '', 'default', $_SERVER['PHP_SELF'] . '?id=' . $object->id . (!empty($object->socid) ? '&socid=' . $object->socid : "") . '&action=clone&object=bom', 'clone', $permissiontoadd);
+				}
+
+				// Close / Cancel
+				if ($permissiontoadd && $object->status == $object::STATUS_VALIDATED) {
+					print '<a class="butActionDelete" href="' . $_SERVER['PHP_SELF'] . '?id=' . $object->id . '&action=close&token=' . newToken() . '">' . $langs->trans("Disable") . '</a>' . "\n";
+				}
+
+				/*
+				if ($user->rights->bom->write)
+				{
+					if ($object->status == 1)
+					 {
+						 print '<a class="butActionDelete" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=disable&token='.newToken().'">'.$langs->trans("Disable").'</a>'."\n";
+					 }
+					 else
+					 {
+						 print '<a class="butAction" href="'.$_SERVER["PHP_SELF"].'?id='.$object->id.'&action=enable&token='.newToken().'">'.$langs->trans("Enable").'</a>'."\n";
+					 }
+				}
+				*/
+
+				// Delete
+				print dolGetButtonAction($langs->trans("Delete"), '', 'delete', $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&action=delete&token=' . newToken(), 'delete', $permissiontodelete);
+			}
+			print '</div>' . "\n";
 		}
-		print '</div>'."\n";
+
+
+		// Select mail models is same action as presend
+		if (GETPOST('modelselected')) {
+			$action = 'presend';
+		}
+
+		if ($action != 'presend') {
+			print '<div class="fichecenter"><div class="fichehalfleft">';
+			print '<a name="builddoc"></a>'; // ancre
+
+			// Documents
+			$objref = dol_sanitizeFileName($object->ref);
+			$relativepath = $objref . '/' . $objref . '.pdf';
+			$filedir = $conf->bom->dir_output . '/' . $objref;
+			$urlsource = $_SERVER["PHP_SELF"] . "?id=" . $object->id;
+			$genallowed = $user->rights->bom->read; // If you can read, you can build the PDF to read content
+			$delallowed = $user->rights->bom->write; // If you can create/edit, you can remove a file on card
+			print $formfile->showdocuments('bom', $objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
+
+			// Show links to link elements
+			$linktoelem = $form->showLinkToObjectBlock($object, null, array('bom'));
+			$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem);
+
+
+			print '</div><div class="fichehalfright">';
+
+			$MAXEVENT = 10;
+
+			$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-bars imgforviewmode', DOL_URL_ROOT . '/bom/bom_agenda.php?id=' . $object->id);
+
+			// List of actions on element
+			include_once DOL_DOCUMENT_ROOT . '/core/class/html.formactions.class.php';
+			$formactions = new FormActions($db);
+			$somethingshown = $formactions->showactions($object, $object->element, 0, 1, '', $MAXEVENT, '', $morehtmlcenter);
+
+			print '</div></div>';
+		}
+
+		//Select mail models is same action as presend
+		if (GETPOST('modelselected')) {
+			$action = 'presend';
+		}
+
+		// Presend form
+		$modelmail = 'bom';
+		$defaulttopic = 'InformationMessage';
+		$diroutput = $conf->bom->dir_output;
+		$trackid = 'bom' . $object->id;
+
+		include DOL_DOCUMENT_ROOT . '/core/tpl/card_presend.tpl.php';
 	}
-
-
-	// Select mail models is same action as presend
-	if (GETPOST('modelselected')) {
-		$action = 'presend';
-	}
-
-	if ($action != 'presend') {
-		print '<div class="fichecenter"><div class="fichehalfleft">';
-		print '<a name="builddoc"></a>'; // ancre
-
-		// Documents
-		$objref = dol_sanitizeFileName($object->ref);
-		$relativepath = $objref.'/'.$objref.'.pdf';
-		$filedir = $conf->bom->dir_output.'/'.$objref;
-		$urlsource = $_SERVER["PHP_SELF"]."?id=".$object->id;
-		$genallowed = $user->rights->bom->read; // If you can read, you can build the PDF to read content
-		$delallowed = $user->rights->bom->write; // If you can create/edit, you can remove a file on card
-		print $formfile->showdocuments('bom', $objref, $filedir, $urlsource, $genallowed, $delallowed, $object->model_pdf, 1, 0, 0, 28, 0, '', '', '', $langs->defaultlang);
-
-		// Show links to link elements
-		$linktoelem = $form->showLinkToObjectBlock($object, null, array('bom'));
-		$somethingshown = $form->showLinkedObjectBlock($object, $linktoelem);
-
-
-		print '</div><div class="fichehalfright">';
-
-		$MAXEVENT = 10;
-
-		$morehtmlcenter = dolGetButtonTitle($langs->trans('SeeAll'), '', 'fa fa-bars imgforviewmode', DOL_URL_ROOT.'/bom/bom_agenda.php?id='.$object->id);
-
-		// List of actions on element
-		include_once DOL_DOCUMENT_ROOT.'/core/class/html.formactions.class.php';
-		$formactions = new FormActions($db);
-		$somethingshown = $formactions->showactions($object, $object->element, 0, 1, '', $MAXEVENT, '', $morehtmlcenter);
-
-		print '</div></div>';
-	}
-
-	//Select mail models is same action as presend
-	if (GETPOST('modelselected')) {
-		$action = 'presend';
-	}
-
-	// Presend form
-	$modelmail = 'bom';
-	$defaulttopic = 'InformationMessage';
-	$diroutput = $conf->bom->dir_output;
-	$trackid = 'bom'.$object->id;
-
-	include DOL_DOCUMENT_ROOT.'/core/tpl/card_presend.tpl.php';
 }
 
 
