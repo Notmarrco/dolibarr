@@ -29,7 +29,9 @@ require_once DOL_DOCUMENT_ROOT.'/bookmarks/class/bookmark.class.php';
 $langs->loadLangs(array('bookmarks', 'admin'));
 
 // Get Parameters
-$action = GETPOST('action', 'aZ09');
+$id = GETPOST("id", 'int');
+
+$action 	= GETPOST('action', 'aZ09');
 $massaction = GETPOST('massaction', 'alpha');
 $show_files = GETPOST('show_files', 'int');
 $confirm = GETPOST('confirm', 'alpha');
